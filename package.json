@@ -4,8 +4,8 @@
   "description": "create, complete your tasks",
   "main": "app.js",
   "scripts": {
-    "run": "node app.js",
-    "test": "standard --fix & standard"
+    "start": "node app.js",
+    "test": "standard"
   },
   "author": "cemkiy",
   "devDependencies": {
