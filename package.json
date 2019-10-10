@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "standard"
+    "test": "standard",
+    "standard": "standard --fix & standard"
   },
   "author": "cemkiy",
   "devDependencies": {
