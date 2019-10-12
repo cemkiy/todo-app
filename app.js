@@ -32,7 +32,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 // Module Import
-require('./tasks')(app)
+require('./todos')(app)
 
 // Index Route
 app.get('/', (req, res) => {

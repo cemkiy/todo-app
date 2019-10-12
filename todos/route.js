@@ -1,85 +1,85 @@
 const express = require('express')
 const router = express.Router()
-const Task = require('./model')
+const Todo = require('./model')
 
-// Create Task
+// Create Todo
 router.post('/', (req, res, next) => {
-  var newTask = new Task(req.body)
+  const newTodo = new Todo(req.body)
 
-  Task.createTask(newTask, (err, task) => {
+  Todo.createTodo(newTodo, (err, todo) => {
     if (err) {
       return res.status(400).json({
         msg: err
       })
     } else {
-      return res.status(201).json(task)
+      return res.status(201).json(todo)
     }
   })
 })
 
-// Get Task by id
+// Get Todo by id
 router.get('/:id', (req, res, next) => {
-  Task.getTaskById(req.params.id, (err, task) => {
+  Todo.getTodoById(req.params.id, (err, todo) => {
     if (err) {
       return res.status(400).json({
-        msg: 'task not found'
+        msg: 'todo not found'
       })
     }
 
-    return res.status(200).json(task)
+    return res.status(200).json(todo)
   })
 })
 
-// List Tasks
+// List Todos
 router.get('/', (req, res, next) => {
-  Task.listTasks(req.query, (err, tasks) => {
+  Todo.listTodos(req.query, (err, todos) => {
     if (err) {
       return res.status(400).json({
         msg: err.toString()
       })
     }
 
-    if (tasks.length === 0) {
+    if (todos.length === 0) {
       return res.status(404).json({
-        msg: 'Task not found'
+        msg: 'Todo not found'
       })
     }
-    return res.status(200).json(tasks)
+    return res.status(200).json(todos)
   })
 })
 
-// Update Task
-router.put('/:id', (req, res, next) => {
-  Task.updateTask(req.params.id, req.body, (err, updatedTask) => {
+// Update Todo
+router.patch('/:id', (req, res, next) => {
+  Todo.updateTodo(req.params.id, req.body, (err, updatedTodo) => {
     if (err) {
       return res.status(400).json({
         msg: err.toString()
       })
     }
 
-    if (!updatedTask) {
+    if (!updatedTodo) {
       return res.status(400).json({
-        msg: 'Task not updated!'
+        msg: 'Todo not updated!'
       })
     }
-    return res.status(200).json(updatedTask)
+    return res.status(200).json(updatedTodo)
   })
 })
 
-// Delete Task
+// Delete Todo
 router.delete('/:id', (req, res, next) => {
-  Task.updateTask(req.params.id, {
+  Todo.updateTodo(req.params.id, {
     deleted_at: new Date()
-  }, (err, deletedTask) => {
+  }, (err, deletedTodo) => {
     if (err) {
       return res.status(400).json({
         msg: err.toString()
       })
     }
 
-    if (!deletedTask) {
+    if (!deletedTodo) {
       return res.status(400).json({
-        msg: 'Task not deleted!'
+        msg: 'Todo not deleted!'
       })
     }
     return res.status(204).json()
