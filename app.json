@@ -1,0 +1,7 @@
+{
+  "name": "todo-app",
+  "description": "getir demo",
+  "repository": "https://github.com/cemkiy/todo-app",
+  "keywords": ["node", "express"],
+  "image": "heroku/nodejs"
+}
